@@ -1,0 +1,58 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  position: absolute;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  color: white;
+  background: linear-gradient(
+    90deg,
+    rgba(85, 7, 115, 1) 0%,
+    rgb(75, 18, 82) 35%,
+    rgba(223, 207, 221, 1) 100%
+  );
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  color: rgb(14, 2, 12);
+  background-color: rgb(128, 5, 89);
+  text-align: center;
+}
+
+.imagen {
+  border-radius: 50%;
+}
+
+h4 {
+  text-align: center;
+}
+
+@media (min-width: 320px) and (max-width: 575px) {
+  .card {
+    width: 80%;
+    color: rgb(14, 2, 12);
+    background-color: rgb(128, 5, 89);
+    text-align: center;
+  }
+}
+
+/* .calendar {
+  height: 40px;
+  width: 40px;
+  margin: 1px;
+  background-color: blueviolet;
+  display: flex;
+} */
