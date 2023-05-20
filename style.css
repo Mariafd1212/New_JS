@@ -1,0 +1,21 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  position: absolute;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  color: white;
+  background: rgb(62, 10, 92);
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+}
