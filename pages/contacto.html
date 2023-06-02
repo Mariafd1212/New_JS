@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta 
+    name="desctription" 
+    content="clases de ingles, clases de japones, toma tus clases online, desde casa, aprendiendo idiomas">
+    <meta 
+    name="keywords" 
+    content="clases de ingles, clases de japones, clases online, homeoffice, remoto, idiomas, aprender">
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome iconos 1 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- CDN Bootstrap 2 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <!-- CDN de jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <!-- CSS Linked -->
+    <link rel="stylesheet" href="../style.css"/>
+    <title>Clases de idiomas online</title>
+    <!-- Animacion -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <!-- AOS Animacion -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/logo_idiomass.png" type="image/x-icon" />
+    <!-- CDN Sweetalert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <!-- Logo -->
+      <a href="/index.html">
+        <img
+          class="logo"
+          src="../img/logo_idiomass.png"
+          alt="Logo de la Empresa"
+        />
+      </a>
+      <!-- Inicio de Navbar -->
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link opcion" href="../index.html"
+                  >Inicio</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link opcion" href="../pages/funciones.html"
+                  >Funciones</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link opcion" href="../pages/servicios.html"
+                  >Servicios</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link opcion" href="../pages/ubicacion.html "
+                  >Ubicación</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link opcion__elegido" href=""
+                  >Contacto</a
+                >
+              </li>
+            </ul>
+            <form class="d-flex" role="search">
+              <input
+                class="form-control me-2"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+              />
+              <button class="btn btn-outline-success" type="submit">
+                Search
+              </button>
+            </form>
+          </div>
+        </div>
+      </nav>
+    </header>
+      <!-- Fin de Navbar y Header-->
+      <!-- Formulario -->
+      <main>
+        <h1 class="formulario d-flex justify-content-center mt-4 form_title">Contactanos</h1>
+        <!-- Formulario -->
+        <div class="formulario col-sm-12 col-md-12 col-lg-12 mb-5 p-3 d-flex grid-gap 3 justify-content-center">
+          <form action="#" method="POST" netlify>
+            <fieldset>
+              <legend>Envíe su mensaje</legend>
+              <div class="campos">
+                <label for="nombre">Nombre Completo:</label>
+                <input type="text" name="nombre" />
+              </div>
+      
+              <div class="campos">
+                <label for="edad">Edad:</label>
+                <input type="text" name="edad" />
+              </div>
+      
+              <div class="campos">
+                <label for="mail">Correo electrónico:</label>
+                <input type="mail" name="mail" />
+              </div>
+      
+              <div class="campos">
+                <label for="idioma">¿Qué idioma deseas estudiar?</label>
+                <select name="idioma" id="idioma">
+                  <option value="blank"></option>
+                  <option value="frances">Francés</option>
+                  <option value="aleman">Alemán</option>
+                  <option value="japones">Japonés</option>
+                  <option value="japones">Inglés</option>
+                </select>
+              </div>
+      
+              <div class="campos">
+                <label for="level">Nivel de Idioma:</label>
+                <select name="nivel" id="nivel">
+                  <option value="blank"></option>
+                  <option value="A2">A2</option>
+                  <option value="B1">B1</option>
+                  <option value="B2">B2</option>
+                  <option value="C1">C1</option>
+                  <option value="C2">C2</option>
+                </select>
+              </div>
+      
+              <div class="campos">
+                <label for="mensaje">Mensaje:</label>
+                <textarea name="mensaje" id="mensaje" cols="30" rows="10"></textarea>
+              </div>
+      
+              <input type="submit" value="Enviar" />
+              <input type="reset" value="Borrar" />
+            </fieldset>
+          </form>
+        </div>
+      </main>
+        <!-- Fin de formulario -->
+
+        <!-- inicio de footer -->
+        <footer class="footer">
+          <a class="form_footer"
+            href="./contacto.html">CONTACTANOS
+          </a>
+          <div class="redes_title">Visitanos en Nuestras Redes Sociales</div>
+          <div class="iconos">
+            <a class="icon" href="#">
+            <i class="fa-brands fa-instagram"></i>"</a>
+            <a class="icon" href="https://www.facebook.com/Learning-languages-1726380900949320">
+            <i class="fa-brands fa-square-facebook"></i>
+            <a class="icon" href="https://www.linkedin.com/in/maria-elena-flores-diaz-87a85a14a/">
+            <i class="fa-brands fa-linkedin"></i>"</a>
+            <a class="icon" href="https://wa.me/541133377588?text=Hola%20necesito%20información">
+            <i class="fa-brands fa-square-whatsapp"></i>"</a>
+          </div>
+        </footer>
+        <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+      <!-- script AOS CSS -->
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script> AOS.init();</script>
+        <script src="../main.js"></script>
+  </body>
+</html>

@@ -1,94 +1,153 @@
 // Variable para almacenar los productos del carrito
-let cartProducts = [];
+const contenidoIdiomas = document.getElementById("contenidoIdiomas");
+const verCart = document.getElementById("verCart");
+const compraContainer = document.getElementById("compraContainer");
 
-// Obtener referencia al contenedor del carrito en el DOM
-const cartContainer = document.getElementById("cart-container");
+const idiomas = [
+  {
+    id: 1,
+    nombre: "Ingles",
+    precio: 100,
+    img: "img/usa_flag.png",
+  },
+  {
+    id: 2,
+    nombre: "Japones",
+    precio: 120,
+    img: "img/japan_flag.png",
+  },
+  {
+    id: 3,
+    nombre: "Frances",
+    precio: 140,
+    img: "img/france_flag.png",
+  },
+  {
+    id: 4,
+    nombre: "Aleman",
+    precio: 200,
+    img: "img/german_flag.png",
+  },
+];
 
-// Función para mostrar los productos en el carrito
-const showCartProducts = () => {
-  // Limpiar el contenido del contenedor del carrito
-  cartContainer.innerHTML = "";
+let cart = [];
 
-  if (cartProducts.length === 0) {
-    // Mostrar mensaje de carrito vacío si no hay productos
-    cartContainer.innerHTML = "<p>El carrito está vacío</p>";
-  } else {
-    // Generar HTML para cada producto en el carrito
-    cartProducts.forEach((product, index) => {
-      const productItem = document.createElement("div");
-      productItem.classList.add("product-item");
+idiomas.forEach((idioma) => {
+  let langs = document.createElement("div");
+  langs.className = "card";
+  langs.innerHTML = `
+    <img class="img_idiomas" src="${idioma.img}">
+    <h3 class="title_idiomas">${idioma.nombre}</h3>
+    <p class="price">${idioma.precio} $</p>
+    `;
+  contenidoIdiomas.append(langs);
 
-      // Generar HTML con información del producto
-      productItem.innerHTML = `
-        <span>${product.title}</span>
-        <span>$${product.price}</span>
-        <button class="remove-product" data-index="${index}">Eliminar</button>
-      `;
+  let buy = document.createElement("button");
+  buy.innerText = "Añadir";
+  buy.className = "añadir";
 
-      // Agregar evento de click al botón de eliminar producto
-      const removeButton = productItem.querySelector(".remove-product");
-      removeButton.addEventListener("click", removeProduct);
+  langs.append(buy);
 
-      // Agregar el producto al contenedor del carrito
-      cartContainer.appendChild(productItem);
+  buy.addEventListener("click", () => {
+    cart.push({
+      img: idioma.img,
+      nombre: idioma.nombre,
+      precio: idioma.precio,
     });
-  }
-};
-
-// Función para agregar un producto al carrito
-const addProductToCart = (title, price) => {
-  const product = { title, price };
-  cartProducts.push(product);
-
-  // Actualizar el carrito en el DOM
-  showCartProducts();
-
-  // Guardar el carrito en el almacenamiento (LocalStorage o SessionStorage)
-  saveCartToStorage();
-};
-
-// Función para eliminar un producto del carrito
-const removeProduct = (event) => {
-  const index = event.target.dataset.index;
-  cartProducts.splice(index, 1);
-
-  // Actualizar el carrito en el DOM
-  showCartProducts();
-
-  // Guardar el carrito actualizado en el almacenamiento
-  saveCartToStorage();
-};
-
-// Función para guardar el carrito en el almacenamiento
-const saveCartToStorage = () => {
-  // Convertir el carrito a formato JSON
-  const cartJSON = JSON.stringify(cartProducts);
-
-  // Guardar el carrito en el almacenamiento (LocalStorage o SessionStorage)
-  localStorage.setItem("cart", cartJSON);
-};
-
-// Función para cargar el carrito desde el almacenamiento
-const loadCartFromStorage = () => {
-  // Obtener el carrito almacenado en formato JSON
-  const cartJSON = localStorage.getItem("cart");
-
-  if (cartJSON) {
-    // Convertir el carrito JSON a objeto JavaScript
-    cartProducts = JSON.parse(cartJSON);
-  }
-
-  // Actualizar el carrito en el DOM
-  showCartProducts();
-};
-
-// Evento al cargar la página para cargar el carrito desde el almacenamiento
-window.addEventListener("load", loadCartFromStorage);
-
-// Evento al hacer clic en el botón "Agregar al carrito"
-const addToCartButton = document.getElementById("add-to-cart");
-addToCartButton.addEventListener("click", () => {
-  const productTitle = document.getElementById("product-title").value;
-  const productPrice = document.getElementById("product-price").value;
-  addProductToCart(productTitle, productPrice);
+    console.log(cart);
+  });
 });
+
+verCart.addEventListener("click", () => {
+  compraContainer.innerHTML = "";
+  compraContainer.style.display = "flex";
+  const compraHeader = document.createElement("div");
+  compraHeader.className = "compra-header";
+  compraHeader.innerHTML = `
+  <h2 class ="compra-header-title">Idiomas a Abonar</h2>
+  `;
+  compraContainer.append(compraHeader);
+
+  const compraButton = document.createElement("h2");
+  compraButton.innerText = "x";
+  compraButton.className = "compra-header-button";
+
+  compraButton.addEventListener("click", () => {
+    compraContainer.style.display = "none";
+  });
+
+  compraHeader.append(compraButton);
+
+  cart.forEach((idioma) => {
+    let cartContent = document.createElement("div");
+    cartContent.className = "compraContent";
+    cartContent.innerHTML = `
+    <img src="${idioma.img}">
+    <h3>${idioma.nombre}</h3>
+    <p>${idioma.precio}</p>
+    `;
+
+    compraContainer.append(cartContent);
+  });
+
+  const total = cart.reduce((acc, cadauno) => acc + cadauno.precio, 0);
+
+  const totalCompra = document.createElement("div");
+  totalCompra.className = "total-content";
+  totalCompra.innerHTML = `Total de la compra: ${total} $`;
+  compraContainer.append(totalCompra);
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+});
+
+// Base de datos de idiomas
+const BD = [
+  { id: 1, nombre: "Inglés", precio: 100 },
+  { id: 2, nombre: "Japonés", precio: 120 },
+  { id: 3, nombre: "Francés", precio: 140 },
+  { id: 4, nombre: "Alemán", precio: 200 },
+];
+
+//funcion para traer productos de otra pc
+const invocarIdiomas = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(BD);
+    }, 2000);
+  });
+};
+
+invocarIdiomas()
+  .then((list) => {
+    console.log(list);
+  })
+  .catch((error) => {
+    console.log(error);
+  })
+  .finally(console.log("outcome"));
+
+//finally
+const EventoCompra = (res) => {
+  return new Promise((resolve, reject) => {
+    res ? resolve("Promesa Resuelta") : reject("Promesa Rechazada");
+  });
+};
+const enviar = document.createElement("div");
+EventoCompra(true)
+  .then((enviarForm) => {
+    enviarForm.addEventListener("click", () => {
+      Swal.fire({
+        title: "¡Joya!",
+        text: "¡Tu formulario fué enviado!",
+        icon: "success",
+        confirmButtonText: "Cool",
+      });
+      document.body.appendChild(enviarForm);
+    });
+  })
+  .catch((error) => {
+    console.log(error);
+  })
+  .finally(() => {
+    console.log("Fin de proceso");
+  });

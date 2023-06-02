@@ -1,30 +1,122 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="desctription"
+      content="clases de ingles, clases de japones, toma tus clases online, desde casa, aprendiendo idiomas"
+    />
+    <meta
+      name="keywords"
+      content="clases de ingles, clases de japones, clases online, homeoffice, remoto, idiomas, aprender"
+    />
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome iconos 1 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- CDN Bootstrap 2 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <!-- CDN de jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <!-- CSS Linked -->
-    <link rel="stylesheet" href="style.css" />
-    <title>Carrito de Compras</title>
+    <link rel="stylesheet" href="./style.css" />
+    <title>Clases de idiomas online</title>
+    <!-- Animacion -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <!-- AOS Animacion -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <!-- Favicon -->
+    <link
+      rel="shortcut icon"
+      href="/img/logo_idiomass.png"
+      type="image/x-icon"
+    />
+    <!-- CDN Sweetalert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   </head>
   <body>
-    <h1>Añade tus idiomas</h1>
+    <header>
+      <!-- Logo -->
+      <a href="index.html">
+        <img
+          class="logo"
+          src="./img/logo_idiomass.png"
+          alt="Logo de la Empresa"
+        />
+      </a>
+      <!-- Inicio de Navbar -->
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarTogglerDemo02"
+            aria-controls="navbarTogglerDemo02"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link opcion__elegido" href="./index.html"
+                  >Inicio</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link opcion" href="./pages/funciones.html"
+                  >Funciones</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link opcion" href="./pages/servicios.html"
+                  >Servicios</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link opcion" href="./pages/ubicacion.html "
+                  >Ubicación</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link opcion" href="./pages/contacto.html"
+                  >Contacto</a
+                >
+              </li>
+            </ul>
+            <h1 class="cart-logo">Carrito</h1>
+            <h1 class="ver-cart" id="verCart">🛒</h1>
+          </div>
+        </div>
+      </nav>
+    </header>
 
-    <div>
-      <h2>Agregar Idiomas</h2>
-      <input type="text" id="product-title" placeholder="Título del producto" />
-      <input
-        type="number"
-        id="product-price"
-        placeholder="Precio del producto"
-      />
-      <button id="add-to-cart">Agregar</button>
-    </div>
+    <h1 class="titulo">Añade tus idiomas</h1>
 
-    <div id="cart-container">
-      <!-- Aquí se mostrarán los productos del carrito -->
-    </div>
+    <div id="contenidoIdiomas" class="contenidoIdiomas"></div>
+    <div id="compraContainer" class="compraContainer"></div>
 
     <script src="main.js"></script>
   </body>
