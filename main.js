@@ -1,7 +1,6 @@
-// Variable para almacenar los productos del carrito
-const contenidoIdiomas = document.getElementById("contenidoIdiomas");
-const verCart = document.getElementById("verCart");
-const compraContainer = document.getElementById("compraContainer");
+const contenidoIdiomas = $("#contenidoIdiomas");
+const verCart = $("#verCart");
+const compraContainer = $("#compraContainer");
 
 const idiomas = [
   {
@@ -33,22 +32,19 @@ const idiomas = [
 let cart = [];
 
 idiomas.forEach((idioma) => {
-  let langs = document.createElement("div");
-  langs.className = "card";
-  langs.innerHTML = `
+  let langs = $("<div>").addClass("card");
+  langs.html(`
     <img class="img_idiomas" src="${idioma.img}">
     <h3 class="title_idiomas">${idioma.nombre}</h3>
     <p class="price">${idioma.precio} $</p>
-    `;
+    `);
   contenidoIdiomas.append(langs);
 
-  let buy = document.createElement("button");
-  buy.innerText = "Añadir";
-  buy.className = "añadir";
+  let buy = $("<button>").text("Añadir").addClass("añadir");
 
   langs.append(buy);
 
-  buy.addEventListener("click", () => {
+  buy.on("click", () => {
     cart.push({
       img: idioma.img,
       nombre: idioma.nombre,
@@ -58,43 +54,38 @@ idiomas.forEach((idioma) => {
   });
 });
 
-verCart.addEventListener("click", () => {
-  compraContainer.innerHTML = "";
-  compraContainer.style.display = "flex";
-  const compraHeader = document.createElement("div");
-  compraHeader.className = "compra-header";
-  compraHeader.innerHTML = `
+verCart.on("click", () => {
+  compraContainer.html("");
+  compraContainer.css("display", "flex");
+  const compraHeader = $("<div>").addClass("compra-header");
+  compraHeader.html(`
   <h2 class ="compra-header-title">Idiomas a Abonar</h2>
-  `;
+  `);
   compraContainer.append(compraHeader);
 
-  const compraButton = document.createElement("h2");
-  compraButton.innerText = "x";
-  compraButton.className = "compra-header-button";
+  const compraButton = $("<h2>").text("x").addClass("compra-header-button");
 
-  compraButton.addEventListener("click", () => {
-    compraContainer.style.display = "none";
+  compraButton.on("click", () => {
+    compraContainer.css("display", "none");
   });
 
   compraHeader.append(compraButton);
 
   cart.forEach((idioma) => {
-    let cartContent = document.createElement("div");
-    cartContent.className = "compraContent";
-    cartContent.innerHTML = `
+    let cartContent = $("<div>").addClass("compraContent");
+    cartContent.html(`
     <img src="${idioma.img}">
     <h3>${idioma.nombre}</h3>
     <p>${idioma.precio}</p>
-    `;
+    `);
 
     compraContainer.append(cartContent);
   });
 
   const total = cart.reduce((acc, cadauno) => acc + cadauno.precio, 0);
 
-  const totalCompra = document.createElement("div");
-  totalCompra.className = "total-content";
-  totalCompra.innerHTML = `Total de la compra: ${total} $`;
+  const totalCompra = $("<div>").addClass("total-content");
+  totalCompra.html(`Total de la compra: ${total} $`);
   compraContainer.append(totalCompra);
 
   localStorage.setItem("cart", JSON.stringify(cart));
@@ -108,7 +99,7 @@ const BD = [
   { id: 4, nombre: "Alemán", precio: 200 },
 ];
 
-//funcion para traer productos de otra pc
+// Función para traer productos de otra PC
 const invocarIdiomas = () => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -124,25 +115,35 @@ invocarIdiomas()
   .catch((error) => {
     console.log(error);
   })
-  .finally(console.log("outcome"));
+  .finally(() => console.log("outcome"));
 
-//finally
+// Finally
 const EventoCompra = (res) => {
   return new Promise((resolve, reject) => {
     res ? resolve("Promesa Resuelta") : reject("Promesa Rechazada");
   });
 };
-const enviar = document.createElement("div");
+
+// Manejar el envío del formulario
 EventoCompra(true)
   .then((enviarForm) => {
-    enviarForm.addEventListener("click", () => {
+    enviarForm.on("submit", (event) => {
+      event.preventDefault(); // Evitar que el formulario se envíe de forma predeterminada
+
       Swal.fire({
         title: "¡Joya!",
-        text: "¡Tu formulario fué enviado!",
+        text: "¡Tu formulario fue enviado!",
         icon: "success",
         confirmButtonText: "Cool",
       });
-      document.body.appendChild(enviarForm);
+
+      // Aquí puedes realizar cualquier otra acción con los datos del formulario
+
+      // Por ejemplo, puedes enviar los datos del formulario a un servidor
+      // utilizando una solicitud AJAX
+
+      // Después de realizar cualquier acción necesaria, puedes resetear el formulario
+      enviarForm[0].reset();
     });
   })
   .catch((error) => {
