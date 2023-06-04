@@ -112,7 +112,8 @@
         <h1 class="formulario d-flex justify-content-center mt-4 form_title">Contactanos</h1>
         <!-- Formulario -->
         <div class="formulario col-sm-12 col-md-12 col-lg-12 mb-5 p-3 d-flex grid-gap 3 justify-content-center">
-          <form name="contact" method="POST" netlify>
+          <form name="contact" method="POST" data-netlify="true" >
+            <input type="hidden" name="form-name" value="contact">
             <fieldset>
               <legend>Envíe su mensaje</legend>
               <div class="campos">
