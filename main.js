@@ -91,64 +91,81 @@ verCart.on("click", () => {
   localStorage.setItem("cart", JSON.stringify(cart));
 });
 
-// Base de datos de idiomas
-const BD = [
-  { id: 1, nombre: "Inglés", precio: 100 },
-  { id: 2, nombre: "Japonés", precio: 120 },
-  { id: 3, nombre: "Francés", precio: 140 },
-  { id: 4, nombre: "Alemán", precio: 200 },
-];
+// Espera a que el documento esté cargado
+$(document).ready(function () {
+  // Manejador de eventos para el envío del formulario
+  $("form").on("submit", function (event) {
+    event.preventDefault(); // Evitar el envío del formulario por defecto
 
-// Función para traer productos de otra PC
-const invocarIdiomas = () => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(BD);
-    }, 2000);
-  });
-};
+    // Crear una promesa para simular una respuesta asincrónica
+    var promise = new Promise(function (resolve, reject) {
+      // Aquí puedes realizar cualquier lógica o llamada a una API
 
-invocarIdiomas()
-  .then((list) => {
-    console.log(list);
-  })
-  .catch((error) => {
-    console.log(error);
-  })
-  .finally(() => console.log("outcome"));
-
-// Finally
-const EventoCompra = (res) => {
-  return new Promise((resolve, reject) => {
-    res ? resolve("Promesa Resuelta") : reject("Promesa Rechazada");
-  });
-};
-
-// Manejar el envío del formulario
-EventoCompra(true)
-  .then((enviarForm) => {
-    enviarForm.on("submit", (event) => {
-      event.preventDefault(); // Evitar que el formulario se envíe de forma predeterminada
-
-      Swal.fire({
-        title: "¡Joya!",
-        text: "¡Tu formulario fue enviado!",
-        icon: "success",
-        confirmButtonText: "Cool",
-      });
-
-      // Aquí puedes realizar cualquier otra acción con los datos del formulario
-
-      // Por ejemplo, puedes enviar los datos del formulario a un servidor
-      // utilizando una solicitud AJAX
-
-      // Después de realizar cualquier acción necesaria, puedes resetear el formulario
-      enviarForm[0].reset();
+      // Simulación de una respuesta exitosa después de 2 segundos
+      setTimeout(function () {
+        resolve();
+      }, 2000);
     });
-  })
-  .catch((error) => {
-    console.log(error);
-  })
-  .finally(() => {
-    console.log("Fin de proceso");
+
+    // Mostrar SweetAlert mientras se espera la respuesta
+    Swal.fire({
+      title: "Enviando formulario...",
+      icon: "info",
+      showCancelButton: false,
+      showConfirmButton: false,
+      allowOutsideClick: false,
+      timerProgressBar: true,
+      timer: 2000,
+      didOpen: function () {
+        Swal.showLoading();
+      },
+      willClose: function () {
+        Swal.fire({
+          title: "¡Formulario enviado!",
+          icon: "success",
+          showCancelButton: false,
+          showConfirmButton: false,
+          timer: 1500,
+          timerProgressBar: true,
+        });
+      },
+    });
+
+    // Manejar el resultado de la promesa
+    promise
+      .then(function () {
+        // Envío de formulario a Netlify
+        const handleSubmit = (event) => {
+          event.preventDefault();
+
+          const myForm = event.target;
+          const formData = new FormData(myForm);
+
+          fetch("/", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams(formData).toString(),
+          })
+            .then(() => console.log("Form successfully submitted"))
+            .catch((error) => alert(error));
+        };
+
+        document.querySelector("form").addEventListener("submit", handleSubmit);
+
+        document.querySelector("form").addEventListener("submit", handleSubmit);
+
+        $("form")[0].reset(); // Limpiar los campos del formulario
+      })
+      .catch(function () {
+        // Aquí puedes manejar el caso en el que ocurra un error al enviar el formulario
+        Swal.fire({
+          title: "Error al enviar el formulario",
+          text: "Por favor, inténtalo de nuevo más tarde.",
+          icon: "error",
+          showCancelButton: false,
+          confirmButtonText: "Cerrar",
+          confirmButtonColor: "#d33",
+        });
+      });
   });
+});
