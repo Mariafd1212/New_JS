@@ -51,6 +51,24 @@ idiomas.forEach((idioma) => {
       precio: idioma.precio,
     });
     console.log(cart);
+    // Agrego notificacion al elimiar producto
+    Toastify({
+      text: "Producto añadido✨",
+      offset: {
+        x: 20,
+        y: 210,
+      },
+      duration: 1500,
+      newWindow: true,
+      close: true,
+      gravity: "top",
+      position: "right",
+      stopOnFocus: true,
+      style: {
+        borderRadius: "10px",
+        background: "#4CAF50",
+      },
+    }).showToast();
   });
 });
 
@@ -152,8 +170,6 @@ $(document).ready(function () {
 
         document.querySelector("form").addEventListener("submit", handleSubmit);
 
-        document.querySelector("form").addEventListener("submit", handleSubmit);
-
         $("form")[0].reset(); // Limpiar los campos del formulario
       })
       .catch(function () {
@@ -169,3 +185,9 @@ $(document).ready(function () {
       });
   });
 });
+
+let prueba = document.createElement("div");
+prueba.classList.add("prueba");
+prueba.innerHTML("Holis");
+
+toastify.alert;
